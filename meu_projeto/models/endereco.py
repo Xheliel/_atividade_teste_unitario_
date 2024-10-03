@@ -76,3 +76,14 @@ class Endereco:
     def _cidade_tipo(cidade):
         if not isinstance(cidade, str):
              raise TypeError("Cidade invalida.")
+
+    def __str__(self) -> str:
+        return (
+            f"\n= = = = = Endereço = = = = =\n"
+            f"\nLogradouro: {self._verificar_logradouro}"
+            f"\nNúmero: {self._verificar_numero}"
+            f"\nComplemento: {self._verificar_complemento}"
+            f"\nCEP: {self._verificar_cep}"
+            f"\nCidade: {self._verificar_cidade}"
+            f"\nUF: {self.uf.uf_nome} / {self.uf.uf_caracter}"
+        )
