@@ -5,3 +5,6 @@ class EstadoCivil(Enum):
     CASADO = "Casado"
     DIVORCIADO = "Divorciado"
     VIUVO = "Viúvo"
+
+    def __init__(self, texto) -> None:
+        self.texto = texto

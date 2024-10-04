@@ -1,0 +1,44 @@
+from abc import abstractmethod
+from projeto.models.abstracts.pessoa import Pessoa
+from projeto.models.endereco import Endereco
+
+class Juridica(Pessoa):
+    def __init__(self, id: int, nome: str, telefone: str, email: str, endereco: Endereco, cnpj: str, inscricao_estadual: str) -> None:
+        super().__init__(id, nome, telefone, email, endereco)
+        self.cnpj = self._verificar_cnpj(cnpj)
+        self.inscricao_estadual = self._verificar_inscricao_estadual(inscricao_estadual)
+
+    @abstractmethod
+    def apresentar(self):
+        pass
+    
+    def _verificar_cnpj(self, valor):
+        """Método para verificação do CNPJ"""
+        self.__verificar_cnpj_vazio(valor)
+
+        self.cnpj = valor
+        return self.cnpj
+        
+    def __verificar_cnpj_vazio(self, valor):
+        """Método auxiliar para verificar CNPJ's vazios"""
+        if not valor.strip():
+            raise ValueError("O CNPJ não pode estar vazio.")
+        
+    def _verificar_inscricao_estadual(self, valor):
+        """Método para verificação de Inscrição Estadual"""
+        self.__verificar_inscricao_estadual_vazio(valor)
+
+        self.inscricao_estadual = valor
+        return self.inscricao_estadual
+        
+    def __verificar_inscricao_estadual_vazio(self, valor):
+        """Método auxiliar para verificar Inscrições vazias"""
+        if not valor.strip():
+            raise ValueError("A inscrição estadual não pode estar vazia.")
+        
+    def __str__(self) -> str:
+        return (
+            f"super().__str__()"
+            f"CNPJ: {self.cnpj}"
+            f"Inscrição estadual: {self.inscricao_estadual}"
+            )
